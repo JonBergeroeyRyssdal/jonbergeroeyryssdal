@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+<div id="link" class="col-3 col-md-2 col-lg-1">
+    <a href="{{ self.url }}">
+        {% image self.logo original as social_logo %}
+        <img
+            src="{{ social_logo.url }}" 
+            alt="{{ social_logo.title }}"
+            class="img-fluid"
+        />
+    </a>
+</div>

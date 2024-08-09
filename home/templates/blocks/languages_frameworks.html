@@ -1,0 +1,14 @@
+{% load wagtailimages_tags %}
+<div class="col-12">
+    <h3 class="text-center">{{ self.heading }}</h3>
+</div>
+<div class="col-12 col-md-2 d-none d-md-block">
+    {% image block.value.image fill-500x580 as img %}
+    <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid frameworks_img" />
+</div>
+<div class="col-12 col-md-10">
+    <p class="">{{ block.value.description }}</p>
+</div>
+
+
+  

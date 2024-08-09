@@ -1,10 +1,11 @@
 {% load static wagtailcore_tags wagtailuserbar %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>
+        <!--
+            <title>
             {% block title %}
             {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
             {% endblock %}
@@ -12,6 +13,10 @@
             {% wagtail_site as current_site %}
             {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
             {% endblock %}
+        </title>
+        -->
+        <title>
+            Jon Bergerøy Ryssdal
         </title>
         {% if page.search_description %}
         <meta name="description" content="{{ page.search_description }}" />
@@ -24,8 +29,34 @@
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/jonbergeroeyryssdal.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/wagtailportofolio.css' %}">
 
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous"
+        />
+        <!--https://creativecommons.org/licenses/by/4.0/-->
+        <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="{% static 'favicon\apple-touch-icon.png' %}"
+        
+        />
+        <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="{% static 'favicon\favicon-32x32.png' %}"
+        />
+        <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="{% static 'favicon\favicon-16x16.png' %}"
+        />
+        <link rel="manifest" href="favicon/site.webmanifest" />
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
         {% endblock %}
@@ -37,7 +68,7 @@
         {% block content %}{% endblock %}
 
         {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/jonbergeroeyryssdal.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/wagtailportofolio.js' %}"></script>
 
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
