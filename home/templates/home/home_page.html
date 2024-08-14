@@ -111,34 +111,31 @@
   <!--Education and courses-->
   <div id="education" class="container p-4 border-bottom">
     <div class="row text-center">
-      <h2 class="pt-5">Education and courses</h2>
+      <h2 class="pt-5">Education, courses and work history</h2>
     </div>
-    <div class="row text-center">
-      <div class="col">
-        <a
-          href="https://www.udemy.com/course/the-ultimate-fullstack-web-development-bootcamp/learn/lecture/24663248?start=150#overview"
-        >
-          <button type="button" class="btn btn-dark">
-            The Ultimate 2023 Fullstack Web Development Bootcamp
-          </button>
-        </a>
-      </div>
-    </div>
-    <div class="row text-center justify-content-center mt-4 fw-bold">
-      <div class="col-2">Download CV:</div>
-    </div>
-    <div class="row text-center justify-content-center">
-      <div class="col-4 col-md-2 col-lg-1">
-        <a href="{{ page.document.url }}" download=""
-          >
+    <div class="row d-flex justify-content-center align-items-center text-center">
+      <div class="col-4 col-md-2 col-lg-1 d-flex flex-column align-items-center">
+        <div>Download CV:</div>
+        <a href="{{ page.document.url }}" download="">
           {% image page.PDF_logo original as pdf_logo_image %}
           <img
-          src="{{ pdf_logo_image.url }}"
+            src="{{ pdf_logo_image.url }}"
             alt="Click PDF Logo to download CV"
             class="img-fluid"
-        /></a>
+          />
+        </a>
+      </div>
+      
+      <div class="col-4 col-md-2 col-lg-1 d-flex justify-content-center align-items-center">
+        udemy
+      </div>
+      
+      <div class="col-4 col-md-2 col-lg-1 d-flex justify-content-center align-items-center">
+        noroff
       </div>
     </div>
+    
+    
   </div>
   <!--Projects-->
   <div id="projects" class="container p-4 border-bottom">
@@ -158,12 +155,10 @@
     <div class="row">
       <h2 class="text-center pt-5">Contact</h2>
     </div>
-    <div class="row p-2">
-      <div class="col text-center">
-        <a href="mailto:jon@ryssdal.net" ta" class="btn btn-dark">jon@ryssdal.net</a>
-      </div>
-    </div>
     <div class="row justify-content-center">
+      <div class="col-3 col-md-2 col-lg-1">
+        <a href="mailto:jon@ryssdal.net" class="btn btn-dark">jon@ryssdal.net</a>
+      </div>
       {% for block in page.social %}
           {% include_block block %}
       {% endfor %}
