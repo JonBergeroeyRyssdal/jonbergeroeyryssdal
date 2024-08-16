@@ -1,0 +1,14 @@
+<div class="row gx-5">
+    <div class="col-12 col-md-4">
+      <img
+        src="{{ self.image.url }}"
+        alt="{{ self.image.alt }}"
+        class="img-fluid"
+      />
+    </div>
+    <div class="col-12 col-md-8">
+      <div>
+        {{ self.text|richtext }}
+      </div>
+    </div>
+  </div>

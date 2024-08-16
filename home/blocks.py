@@ -52,3 +52,12 @@ class SocialBlock(blocks.StructBlock):
         template = "blocks/social.html"
         icon = "doc-full"
         label = "Social media logo and link to profile"
+
+class AboutBlock(blocks.StructBlock):
+    image = ImageChooserBlock(required=True)
+    text = blocks.RichTextBlock(required=True)
+
+    class Meta:
+        template = "blocks/AboutBlock.html"
+        icon = "image"
+        label = "Image & Text"

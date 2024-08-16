@@ -2,7 +2,7 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, PageChooserPanel 
 from wagtail.fields import StreamField
-from .blocks import BootstrapCardBlock, LanguageFrameworkBlock, SocialBlock  # Import the block here
+from .blocks import BootstrapCardBlock, LanguageFrameworkBlock, SocialBlock, AboutBlock   # Import the block here
 from wagtail import blocks
 
 class HomePage(Page):
@@ -14,16 +14,10 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    about_text = StreamField([
-        ('paragraph', blocks.RichTextBlock()),
-    ], null=True)
-    about_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=False,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
+    about_section = StreamField([
+        ('image_text', AboutBlock()),
+    ], null=True, blank=True)
+
     languages_frameworks = StreamField([
         ('languages_frameworks', LanguageFrameworkBlock()),
     ], null=True, blank=True)
@@ -50,9 +44,7 @@ class HomePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("head_title"),
-        PageChooserPanel("head_image"),
-        PageChooserPanel("about_image"),
-        FieldPanel("about_text"),
+        FieldPanel('about_section'),
         FieldPanel('languages_frameworks'),
         PageChooserPanel("PDF_logo"),
         FieldPanel('CV'),
