@@ -72,9 +72,9 @@
         <h2 class="text-center pt-5">About</h2>
       </div>
     </div>
-    {% for block in page.about_section %}
-    {{ block }}
-  {% endfor %}
+    {% for block in page.about_block %}
+     {% include_block block %}
+    {% endfor %}
   </div>
   <!--Languages and programs-->
   <div id="languages" class="container p-4 border-bottom">
@@ -95,26 +95,12 @@
       <h2 class="pt-5">Education, courses and work history</h2>
     </div>
     <div class="row d-flex justify-content-center align-items-center text-center">
-      <div class="col-4 col-md-2 col-lg-1 d-flex flex-column align-items-center">
-        <div>Download CV:</div>
-        <a href="{{ page.document.url }}" download="">
-          {% image page.PDF_logo original as pdf_logo_image %}
-          <img
-            src="{{ pdf_logo_image.url }}"
-            alt="Click PDF Logo to download CV"
-            class="img-fluid"
-          />
-        </a>
-      </div>
-      <div class="col-4 col-md-2 col-lg-1 d-flex justify-content-center align-items-center">
-        udemy
-      </div>
-      <div class="col-4 col-md-2 col-lg-1 d-flex justify-content-center align-items-center">
-        noroff
-      </div>
+        {% if page.body %}
+          {% for block in page.body %}
+            {{ block }}
+          {% endfor %}
+        {% endif %}
     </div>
-    
-    
   </div>
   <!--Projects-->
   <div id="projects" class="container p-4 border-bottom">
@@ -135,9 +121,6 @@
       <h2 class="text-center pt-5">Contact</h2>
     </div>
     <div class="row justify-content-center">
-      <div class="col-3 col-md-2 col-lg-1">
-        <a href="mailto:jon@ryssdal.net" class="btn btn-dark">jon@ryssdal.net</a>
-      </div>
       {% for block in page.social %}
           {% include_block block %}
       {% endfor %}
