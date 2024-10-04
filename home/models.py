@@ -2,52 +2,38 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel, PageChooserPanel 
 from wagtail.fields import StreamField
-from .blocks import BootstrapCardBlock, LanguageFrameworkBlock, SocialBlock, AboutBlock   # Import the block here
+from .blocks import BootstrapCardBlock, LanguageFrameworkBlock, SocialBlock, AboutBlock, HeaderBlock   # Import the block here
 from wagtail import blocks
 
 class HomePage(Page):
-    head_title = models.CharField(max_length=100, default="Python Fullstack Web Developer")
-    head_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=False,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-    about_section = StreamField([
-        ('image_text', AboutBlock()),
+    
+    header_block = StreamField([
+        ('header', HeaderBlock()),
     ], null=True, blank=True)
-
+    
+    about_block = StreamField([
+        ('about_block', AboutBlock()),
+    ], null=True, blank=True
+    )
     languages_frameworks = StreamField([
         ('languages_frameworks', LanguageFrameworkBlock()),
-    ], null=True, blank=True)
-    PDF_logo = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=False,
-        on_delete=models.SET_NULL,
-        related_name="+",
+    ], null=True, blank=True
     )
-    CV = models.FileField(upload_to='documents/', blank=True, null=True
-                          )
     project = StreamField([
         ('card', BootstrapCardBlock()), 
-    ], null=True
+    ], null=True, blank=True
     )
     social = StreamField([
-        ('social', SocialBlock()), 
-    ], null=True
-    )
+        ('social_block', SocialBlock())
+    ], blank=True)
     footer_info = StreamField([
         ('footer_info', blocks.TextBlock(template = "blocks/footer_info.html")),
-    ], null=True)
+    ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel("head_title"),
-        FieldPanel('about_section'),
+        FieldPanel("header_block"),
+        FieldPanel('about_block'),
         FieldPanel('languages_frameworks'),
-        PageChooserPanel("PDF_logo"),
-        FieldPanel('CV'),
         FieldPanel('project'),
         FieldPanel('social'),
         FieldPanel('footer_info'),

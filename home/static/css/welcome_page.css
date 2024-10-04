@@ -1,9 +1,0 @@
-.frameworks_img {
-    width: 100%; /* Default width */
-}
-
-@media (max-width: 767.98px) {
-    .frameworks_img {
-        width: 100px; /* Adjust this value as needed */
-    }
-}

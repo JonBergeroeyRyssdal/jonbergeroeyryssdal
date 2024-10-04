@@ -1,0 +1,11 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+    <a href="{{ self.link.url }}" target="_blank" rel="noopener noreferrer">{{ self.name }}
+        <!--
+        {% image self.logo fill-100x140 as img %}
+        <img src="{{ img.url }}" alt="{{ self.name }} logo" width="160" height="140" />
+        -->
+        
+    </a>
+

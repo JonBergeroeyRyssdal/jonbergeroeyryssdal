@@ -1,161 +1,107 @@
-{% extends "base.html" %}
-{% load static wagtailimages_tags wagtailcore_tags %}
+{% extends "base.html" %} {% load static wagtailimages_tags wagtailcore_tags %}
+{% block body_class %}template-homepage{% endblock %} {% block extra_css %}
+{% endblock extra_css %} {% block content %}
 
-{% block body_class %}template-homepage{% endblock %}
+<!--Title and image-->
+{% for block in page.header_block %} {% include_block block %} {% endfor %}
 
-{% block extra_css %}
-
-{% endblock extra_css %}
-
-{% block content %}
-
-  <!--Title and image-->
-  <div class="position-relative">
-    {% image page.head_image fill-1920x1080 as img %}
-    <img
-      src="{{ img.url}}"
-      class="img-fluid"
-      alt="{{ img.alt }}">
-    <div class="position-absolute top-50 start-50 translate-middle text-dark">
-      <h1 class="fw-bold">{{ page.head_title }}</h1>
+<!--Navbar-->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top px-5">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Jon Bergerøy Ryssdal</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#languages"
+            >Languages and frameworks</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#projects">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#contact">Contact, education and work history</a>
+        </li>
+      </ul>
     </div>
   </div>
-  <!--Navbar-->
-  <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top px-5 ">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Jon Bergerøy Ryssdal</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarNav"
-      >
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#about"
-              >About</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#education"
-              >Education and courses</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#languages"
-              >Languages and frameworks</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#projects">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
+</nav>
+
+<!--About-->
+<div id="about" class="container p-4 border-bottom">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center pt-5">About</h2>
     </div>
-  </nav>
-  <!--About-->
-  <div id="about" class="container p-4 border-bottom">
+  </div>
+  {% for block in page.about_block %} {% include_block block %} {% endfor %}
+</div>
+
+<!--Languages and frameworks-->
+<div id="languages" class="container p-4 border-bottom">
+  <div class="row mb-4">
+    <div class="col">
+      <h2 class="text-center pt-5">My languages and frameworks</h2>
+    </div>
+  </div>
+  <div class="row gx-5">
+    {% for block in page.languages_frameworks %}
+      {% include_block block %}
+    {% endfor %}
+  </div>
+</div>
+
+<!--Projects-->
+<div id="projects" class="container p-4 border-bottom">
+  <div class="row mb-4">
+    <div class="col">
+      <h2 class="text-center pt-5">Projects</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for block in page.project %} {{ block }} {% endfor %}
+  </div>
+</div>
+
+<!--Contact, education and work history-->
+<div id="contact" class="container p-4">
+  <div class="row">
+    <h2 class="text-center pt-5">Contact, education and work history</h2>
+  </div>
+ 
+    {% for block in page.social %}  
+      {{ block }}
+    {% endfor %}
+ 
+</div>
+
+<!--Footer-->
+<footer class="bg-dark p-4">
+  <div class="container">
     <div class="row">
-      <div class="col">
-        <h2 class="text-center pt-5">About</h2>
-      </div>
-    </div>
-    {% for block in page.about_section %}
-    {{ block }}
-  {% endfor %}
-  </div>
-  <!--Languages and programs-->
-  <div id="languages" class="container p-4 border-bottom">
-    <div class="row mb-4">
-      <div class="col">
-        <h2 class="text-center pt-5">My languages and frameworks</h2>
-      </div>
-    </div>
-    <div class="row gx-5">
-      {% for block in page.languages_frameworks %}
-          {% include_block block %}
-      {% endfor %}
+      {% for block in page.footer_info %} {{ block }} {% endfor %}
     </div>
   </div>
-  <!--Education and courses-->
-  <div id="education" class="container p-4 border-bottom">
-    <div class="row text-center">
-      <h2 class="pt-5">Education, courses and work history</h2>
-    </div>
-    <div class="row d-flex justify-content-center align-items-center text-center">
-      <div class="col-4 col-md-2 col-lg-1 d-flex flex-column align-items-center">
-        <div>Download CV:</div>
-        <a href="{{ page.document.url }}" download="">
-          {% image page.PDF_logo original as pdf_logo_image %}
-          <img
-            src="{{ pdf_logo_image.url }}"
-            alt="Click PDF Logo to download CV"
-            class="img-fluid"
-          />
-        </a>
-      </div>
-      <div class="col-4 col-md-2 col-lg-1 d-flex justify-content-center align-items-center">
-        udemy
-      </div>
-      <div class="col-4 col-md-2 col-lg-1 d-flex justify-content-center align-items-center">
-        noroff
-      </div>
-    </div>
-    
-    
-  </div>
-  <!--Projects-->
-  <div id="projects" class="container p-4 border-bottom">
-    <div class="row mb-4">
-      <div class="col">
-        <h2 class="text-center pt-5">Projects</h2>
-      </div>
-    </div>
-    <div class="row">
-      {% for block in page.project %}
-        {{ block }}
-      {% endfor %}
-    </div>
-  </div>
-  <!--Contact-->
-  <div id="contact" class="container p-4">
-    <div class="row">
-      <h2 class="text-center pt-5">Contact</h2>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-3 col-md-2 col-lg-1">
-        <a href="mailto:jon@ryssdal.net" class="btn btn-dark">jon@ryssdal.net</a>
-      </div>
-      {% for block in page.social %}
-          {% include_block block %}
-      {% endfor %}
-  </div>
-  </div>
-  <!--Footer-->
-  <footer class="bg-dark p-4">
-    <div class="container">
-      <div class="row">
-        {% for block in page.footer_info %}
-            {{ block }}
-          {% endfor %}
-      </div>
-    </div>
-  </footer>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+</footer>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"
+></script>
 
 {% endblock content %}

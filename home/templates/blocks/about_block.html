@@ -1,14 +1,16 @@
+{% load wagtailimages_tags %}
 <div class="row gx-5">
     <div class="col-12 col-md-4">
+      {% image block.value.image fill-500x580 as img %}
       <img
-        src="{{ self.image.url }}"
-        alt="{{ self.image.alt }}"
+        src="{{ img.url }}"
+        alt="{{ img.alt }}"
         class="img-fluid"
       />
     </div>
     <div class="col-12 col-md-8">
       <div>
-        {{ self.text|richtext }}
+        {{ self.text }}
       </div>
     </div>
   </div>

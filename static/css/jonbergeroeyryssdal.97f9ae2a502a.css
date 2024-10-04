@@ -1,0 +1,10 @@
+.nav-link {
+    color: white; /* Ensures the link text is white */
+    text-decoration: none; /* Removes underline by default */
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+    text-decoration-color: white; /* Sets underline color to white */
+  }
+  
