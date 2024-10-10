@@ -1,0 +1,20 @@
+{% load wagtailimages_tags %}
+
+<div class="col-3 col-md-2 col-lg-1">
+  {% if self.logo %}
+    <!-- Clickable logo as a link -->
+    <a 
+      {% if self.option == 'email' and self.email %}
+        href="mailto:{{ self.email }}"
+        class="social-logo-link"
+      {% elif self.option == 'url' and self.url %}
+        href="{{ self.url }}" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      {% endif %}
+    >
+      {% image self.logo original width-100 as logo_image %}
+      <img src="{{ logo_image.url }}" alt="Social Logo" class="social-logo" />
+    </a>
+  {% endif %}
+</div>

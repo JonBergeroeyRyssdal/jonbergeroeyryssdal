@@ -1,0 +1,17 @@
+{% load wagtailimages_tags %}
+<div class="col-12 col-md-2 col-lg-1 d-flex flex-column align-items-center"></div>
+{% if self.cv_file %}
+  <a href="{{ self.cv_file.url }}" download="">
+    {% if self.pdf_logo %}
+      {% image self.pdf_logo width-100 as pdf_logo_image %}
+      <img
+        src="{{ pdf_logo_image.url }}"
+        alt="Click PDF Logo to download CV"
+        class="img-fluid"
+        style="max-width: 100px;"
+      />
+    {% endif %}
+  </a>
+{% endif %}
+</div>
+
