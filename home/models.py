@@ -2,8 +2,9 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel 
 from wagtail.fields import StreamField
-from .blocks import BootstrapCardBlock, LanguageFrameworkBlock, SocialBlock, AboutBlock, HeaderBlock   # Import the block here
+from .blocks import BootstrapCardBlock, SocialBlock, AboutBlock, HeaderBlock   # Import the block here
 from wagtail import blocks
+from wagtail.images.blocks import ImageChooserBlock
 
 class HomePage(Page):
     header_block = StreamField([
@@ -14,9 +15,11 @@ class HomePage(Page):
     ], null=True, blank=True
     )
     languages_frameworks = StreamField([
-        ('languages_frameworks', LanguageFrameworkBlock()),
-    ], null=True, blank=True
-    )
+        ('language_framework', blocks.StructBlock([
+            ('name', blocks.CharBlock(required=True, max_length=50)),
+            ('logo', ImageChooserBlock(required=True)),
+        ])),
+    ], null=True, blank=True)
     project = StreamField([
         ('card', BootstrapCardBlock()), 
     ], null=True, blank=True

@@ -1,16 +1,12 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 <div class="row justify-content-center text-center">
-  <div class="col-12 col-md-4">
-    <h4>Work and education</h4>
     <ul class="list-unstyled">
       <li>
         <a href="{{ self.cv_document.url }}" download>Click to download CV</a>
       </li>
-    </ul>
-  </div>
-  <div class="col-12 col-md-4">
-    <h4>Contact Information</h4>
-    <ul class="list-unstyled">
+      {% for link in self.social_media_links %}
+      <li>{% include_block link %}</li>
+      {% endfor %}
       <li>
         <a href="mailto:{{ self.email }}">{{ self.email }}</a>
       </li>
@@ -20,12 +16,4 @@
       </li>
     </ul>
   </div>
-  <div class="col-12 col-md-4">
-    <h4>Social Media Links:</h4>
-    <ul class="list-unstyled">
-      {% for link in self.social_media_links %}
-      <li>{% include_block link %}</li>
-      {% endfor %}
-    </ul>
-  </div>
-</div>
+ 

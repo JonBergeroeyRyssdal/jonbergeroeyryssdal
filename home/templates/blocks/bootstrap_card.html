@@ -1,14 +1,8 @@
 <!-- templates/blocks/bootstrap_card.html -->
 {% load wagtailimages_tags %}
 
-<div
-  class="col-12 col-md-6 col-lg-4"
-  type="button"
-  class=""
-  data-bs-toggle="modal"
-  data-bs-target="#exampleModal{{ self.id }}"
->
-  <div class="card mb-2" style="height: 20rem">
+<a href="{{ self.live_url }}" class="card-btn col-12 col-md-6 col-lg-4" id="card-btn" style="text-decoration: none; color: inherit;">
+  <div class="card mb-2" style="height: 20rem;">
     {% image self.image fill-400x200 as card_image %}
     <img
       src="{{ card_image.url }}"
@@ -20,27 +14,7 @@
       <p class="card-text">{{ self.text }}</p>
     </div>
   </div>
-  <div
-    class="modal fade"
-    id="exampleModal{{ self.id }}"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="d-grid gap-2 col-6 mx-auto my-5">
-          {% if self.live_url %}
-          <a href="{{ self.live_url }}" class="btn btn-dark" type="button">Live page</a>
-          {% endif %}
-          <a
-            href="{{ self.git_url }}"
-            class="btn btn-dark"
-            type="button"
-            >GitHub</a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</a>
+
+
+

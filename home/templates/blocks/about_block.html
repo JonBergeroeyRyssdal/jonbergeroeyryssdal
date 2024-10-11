@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
 <div class="row gx-5">
     <div class="col-12 col-md-4">
-      {% image block.value.image fill-500x580 as img %}
+      {% image block.value.image fill-400x400 as img %}
       <img
         src="{{ img.url }}"
         alt="{{ img.alt }}"
