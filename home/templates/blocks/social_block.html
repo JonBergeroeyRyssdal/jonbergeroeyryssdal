@@ -1,19 +1,38 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 <div class="row justify-content-center text-center">
-    <ul class="list-unstyled">
-      <li>
-        <a href="{{ self.cv_document.url }}" download>Click to download CV</a>
-      </li>
-      {% for link in self.social_media_links %}
-      <li>{% include_block link %}</li>
-      {% endfor %}
-      <li>
-        <a href="mailto:{{ self.email }}">{{ self.email }}</a>
-      </li>
-      <li>
-        <a href="tel:{{ self.phone }}">{{ self.phone }}</a>
-        <!-- Phone call link -->
-      </li>
-    </ul>
-  </div>
- 
+  <ul class="list-unstyled">
+    <li>
+      <a href="{{ self.cv_document.url }}" download class="link">Click to download CV</a>
+    </li>
+    {% for link in self.social_media_links %}
+    <li>
+      {% include_block link %}
+    </li>
+    {% endfor %}
+    <li>
+      <a href="mailto:{{ self.email }}" class="link">{{ self.email }}</a>
+    </li>
+    <li>
+      <a href="tel:{{ self.phone }}" class="link">{{ self.phone }}</a>
+      <!-- Phone call link -->
+    </li>
+  </ul>
+</div>
+
+<style>
+  .link {
+    color: black; /* Set the link color to black */
+    text-decoration: none; /* Remove underline by default */
+  }
+
+  .link:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: black; /* Keep the link black on hover */
+  }
+
+  /* Add margin to each list item */
+  .list-unstyled li {
+    margin-bottom: 1rem; /* Space between each list item */
+  }
+</style>
+
